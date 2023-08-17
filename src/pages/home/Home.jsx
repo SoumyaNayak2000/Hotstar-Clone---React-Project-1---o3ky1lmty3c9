@@ -1,7 +1,7 @@
 import React from "react";
 import "./home.scss";
-import Slider from "../home/heroBanner/Slider"
-import ProductionHouse from "../home/heroBanner/ProductionHouse"
+import Slider from "./homeComponents/Slider"
+import ProductionHouse from "./homeComponents/ProductionHouse"
 import Trending from "./trending/Trending";
 import Popular from "./popular/Popular";
 import TopRated from "./topRated/TopRated";

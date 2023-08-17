@@ -1,7 +1,6 @@
 import React from "react";
 import useFetch from "../../hooks/useFetch";
 import { useParams } from "react-router-dom";
-import "./details.scss";
 import DetailsBanner from "./detailsBanner/DetailsBanner";
 import Cast from "./cast/Cast";
 import VideosSection from "./videosSection/VideosSection";

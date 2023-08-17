@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { getUser } from "../store/userSlice";
+import { getUser } from "../reduxStore/userSlice";
 
 const provider = new GoogleAuthProvider();
 const githubProvider = new GithubAuthProvider();

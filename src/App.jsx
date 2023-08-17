@@ -1,16 +1,16 @@
 import { useEffect } from "react";
-import { Routes, Route, useNavigate, BrowserRouter } from "react-router-dom";
-import { fetchDataFromApi } from "./utils/api";
+import { Routes, Route, useNavigate } from "react-router-dom";
+import { fetchDataFromApi } from "./utilities/api";
 
 import { useSelector, useDispatch } from "react-redux";
-import { getApiConfiguration, getGeneres } from "./store/homeSlice";
+import { getApiConfiguration, getGeneres } from "./reduxStore/homeSlice";
 
 
 import Header from "./components/Header";
 
 import Home from "./pages/home/Home";
 import Details from "./pages/details/Details";
-import SearchResult from "./pages/searchResult/SearchResult";
+import SearchResult from "./pages/searchResult/SearchResult"
 import Explore from "./pages/explore/Explore";
 import PageNotFound from "./pages/404/PageNotFound";
 import Login from "./pages/login/Login";

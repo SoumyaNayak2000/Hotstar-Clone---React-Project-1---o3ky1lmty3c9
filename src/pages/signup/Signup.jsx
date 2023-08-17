@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import "./style.scss";
+import "./signup.scss";
 import ContentWrapper from '../../components/contentWrapper/ContentWrapper';
 import { Stack, TextField } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
@@ -10,7 +10,7 @@ import { inputLabelClasses } from "@mui/material/InputLabel";
 import axios from "axios";
 import { toast } from 'react-toastify';
 import useAuth from '../../hooks/useAuth';
-import { getUser } from '../../store/userSlice'
+import { getUser } from '../../reduxStore/userSlice'
 import { useDispatch } from 'react-redux';
 import Loader from '../../components/Loader';
 

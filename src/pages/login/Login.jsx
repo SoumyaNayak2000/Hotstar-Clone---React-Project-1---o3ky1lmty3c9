@@ -8,11 +8,13 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from "axios";
 import { Stack, TextField } from '@mui/material';
 import { inputLabelClasses } from "@mui/material/InputLabel";
-import { getUser } from '../../store/userSlice'
+import { getUser } from '../../reduxStore/userSlice'
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import useAuth from '../../hooks/useAuth';
 import Loader from '../../components/Loader';
+
+import logo from "../../assets/images/logo.png"
 
 
 const Login = () => {
@@ -93,7 +95,7 @@ const Login = () => {
         <>
             <section className='login-main'>
                 <div className="bg-img">
-                    <img src={'../../assets/images/logo.png'} alt="" />
+                    <img src={logo} alt="" />
                 </div>
                 <div className="form-wrapper">
                     <h2>Sign In</h2>
@@ -104,13 +106,13 @@ const Login = () => {
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
                                     InputLabelProps={{ sx: myStyle() }}
-                                    autoComplete
+                                    autoComplete='true'
                                 />
                                 <TextField id="password" type='password' label="Password" variant="filled"
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
                                     InputLabelProps={{ sx: myStyle() }}
-                                    autoComplete
+                                    autoComplete='true'
                                 />
                             </Stack>
                         </div>

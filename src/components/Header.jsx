@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 import { HiOutlineSearch } from "react-icons/hi";
 import { SlMenu } from "react-icons/sl";
 import { VscChromeClose } from "react-icons/vsc";
-import { useNavigate, useLocation, Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getUser } from "../store/userSlice";
+import { getUser } from "../reduxStore/userSlice";
 import { toast } from "react-toastify";
+
+import { auth } from "../firebase/firebase";
 
 import "./header.scss";
 
@@ -19,9 +21,8 @@ const Header = () => {
   const [query, setQuery] = useState("");
   const [showSearch, setShowSearch] = useState("");
   const navigate = useNavigate();
-  const location = useLocation();
   const { userDetails } = useSelector((state) => state?.user);
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -75,62 +76,70 @@ const Header = () => {
 
   const logout = () => {
     try {
-        // console.log('logging out....');
-        dispatch(getUser(null));
-        toast.success('Successfully logged out!');
+      // console.log('logging out....');
+      dispatch(getUser(null));
+      toast.success("Successfully logged out!");
     } catch (error) {
-        console.error(error);
-        toast.error('Something goes very wrong');
+      console.error(error);
+      toast.error("Something goes very wrong");
     }
+  };
 
-}
+  
   return (
     <header className={`header ${mobileMenu ? "mobileView" : ""} ${show}`}>
       <ContentWrapper>
-        <Link className="logo" to={`${(userDetails?.data || userDetails?.user?.displayName) ? '/' : '/login'}`}>
+        <Link
+          className="logo"
+          to={`${
+            userDetails?.data || userDetails?.user?.displayName ? "/" : "/login"
+          }`}
+        >
           <img src={hotStarLogo} alt="" />
         </Link>
-        {
-          userDetails?.data || userDetails?.user?.displayName ? 
+        {userDetails?.data || userDetails?.user?.displayName ? (
           <ul className="menuItems ">
-          <li
-            className="menuItem hover:scale-110 transition-all duration-300
+            <li
+              className="menuItem hover:scale-110 transition-all duration-300
             ease-in-out"
-            onClick={() => navigate("/")}
-          >
-            Home
-          </li>
-          <li
-            className="menuItem hover:scale-110 transition-all duration-300
-            ease-in-out "
-            onClick={() => navigationHandler("movie")}
+              onClick={() => navigate("/")}
             >
-            Movies
-          </li>
+              Home
+            </li>
+            <li
+              className="menuItem hover:scale-110 transition-all duration-300
+            ease-in-out "
+              onClick={() => navigationHandler("movie")}
+            >
+              Movies
+            </li>
 
-          <li
-            className="menuItem hover:scale-110 transition-all duration-300
+            <li
+              className="menuItem hover:scale-110 transition-all duration-300
             ease-in-out"
-            onClick={() => navigationHandler("tv")}
-          >
-            TV Shows
-          </li>
-          <li
-            className="menuItem hover:scale-110 transition-all duration-300
+              onClick={() => navigationHandler("tv")}
+            >
+              TV Shows
+            </li>
+            <li
+              className="menuItem hover:scale-110 transition-all duration-300
             ease-in-out"
-          >
-            <HiOutlineSearch onClick={openSearch} />
-          </li>
-          <li
-            className="menuItem hover:scale-110 transition-all duration-300
+            >
+              <HiOutlineSearch onClick={openSearch} />
+            </li>
+
+            <li
+              className="menuItem hover:scale-110 transition-all duration-300
             ease-in-out"
-            onClick={() => navigate("/login")}
-          >
-            Login
-          </li>
-        </ul>
-        : ""
-        }
+            >
+              <Link to={"/login"} onClick={logout}>
+                Logout
+              </Link>
+            </li>
+          </ul>
+        ) : (
+          ""
+        )}
 
         <div className="mobileMenuItems">
           <HiOutlineSearch onClick={openSearch} />
@@ -138,7 +147,7 @@ const Header = () => {
             <VscChromeClose onClick={() => setMobileMenu(false)} />
           ) : (
             <SlMenu onClick={openMobileMenu} />
-            )}
+          )}
         </div>
       </ContentWrapper>
       {showSearch && (
