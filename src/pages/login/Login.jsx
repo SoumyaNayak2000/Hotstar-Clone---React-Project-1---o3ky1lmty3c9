@@ -87,16 +87,13 @@ const Login = () => {
             color: "white",
             [`&.${inputLabelClasses.shrink}`]: {
                 // set the color of the label when shrinked (usually when the TextField is focused)
-                color: "blue",
+                color: "white",
             }
         }
     }
     return loading ? <div><Loader/></div> : (
         <>
             <section className='login-main'>
-                <div className="bg-img">
-                    <img src={logo} alt="" />
-                </div>
                 <div className="form-wrapper">
                     <h2>Sign In</h2>
                     <form onSubmit={(e) => { e.preventDefault() }}>
@@ -106,7 +103,7 @@ const Login = () => {
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
                                     InputLabelProps={{ sx: myStyle() }}
-                                    autoComplete='true'
+                                    autoComplete="true"
                                 />
                                 <TextField id="password" type='password' label="Password" variant="filled"
                                     value={password}
@@ -115,8 +112,6 @@ const Login = () => {
                                     autoComplete='true'
                                 />
                             </Stack>
-                        </div>
-                        <div className="form-control">
                         </div>
                         <button className='btn-signin' type="button" onClick={handleSignIn}>Sign In</button>
                         <div className="form-help">
