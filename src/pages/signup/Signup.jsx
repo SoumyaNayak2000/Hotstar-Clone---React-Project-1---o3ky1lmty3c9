@@ -100,20 +100,14 @@ const Signup = () => {
     }
     console.log(user?.config);
 
-    return loading ? <div className="loader"><Loader/></div> : (
+    return loading ? <div><Loader/></div> : (
         <>
             <section className="signup">
                 <ContentWrapper>
-                    <div className="content">
-                        <div className="pageTitle">
-                            {/* Register Here */}
-                        </div>
-                    </div>
-
                     <div className="formDiv">
                         <div className="form">
                             <p className="para2">
-                                Register and Enjoy with Hotstar
+                                SignUp with Hotstar
                             </p>
 
                             <form onSubmit={e => e.preventDefault()}>
