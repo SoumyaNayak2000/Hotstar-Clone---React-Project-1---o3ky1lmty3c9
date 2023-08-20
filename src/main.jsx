@@ -6,6 +6,7 @@ import "./index.scss";
 import { store } from "./reduxStore/store";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom/dist";
+import User from "./pages/profilePage/User";
 // import Loader from "./components/Loader";
 
 ReactDOM.createRoot(document.getElementById("root")).render(

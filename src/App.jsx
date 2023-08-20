@@ -5,12 +5,11 @@ import { fetchDataFromApi } from "./utilities/api";
 import { useSelector, useDispatch } from "react-redux";
 import { getApiConfiguration, getGeneres } from "./reduxStore/homeSlice";
 
-
 import Header from "./components/Header";
 
 import Home from "./pages/home/Home";
 import Details from "./pages/details/Details";
-import SearchResult from "./pages/searchResult/SearchResult"
+import SearchResult from "./pages/searchResult/SearchResult";
 import Explore from "./pages/explore/Explore";
 import PageNotFound from "./pages/404/PageNotFound";
 import Login from "./pages/login/Login";
@@ -19,8 +18,7 @@ import Signup from "./pages/signup/Signup";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/ReactToastify.min.css";
 import Footer from "./components/Footer";
-
-
+import User from "./pages/profilePage/User"
 
 function App() {
   const dispatch = useDispatch();
@@ -68,21 +66,23 @@ function App() {
 
   return (
     <main>
-      
       <Header />
-      <ToastContainer theme="dark" position="top-right" autoClose={2000} />
+      <ToastContainer theme="dark" position="bottom-left" autoClose={1000}  />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/get-started" element={<GetStarted />} />
+
+        {/* <Route path="/user/mylist" element={<Mylist />} /> */}
+        <Route path="/user/profile" element={<User />} />
+
         <Route path="/:mediaType/:id" element={<Details />} />
         <Route path="/search/:query" element={<SearchResult />} />
         <Route path="/explore/:mediaType" element={<Explore />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
-      <Footer/>
-
+      <Footer />
     </main>
   );
 }

@@ -2,17 +2,18 @@ import React, { useState, useEffect } from "react";
 import { HiOutlineSearch } from "react-icons/hi";
 import { SlMenu } from "react-icons/sl";
 import { VscChromeClose } from "react-icons/vsc";
+import {CgProfile} from "react-icons/cg"
 import { useNavigate, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getUser } from "../reduxStore/userSlice";
 import { toast } from "react-toastify";
-
 import { auth } from "../firebase/firebase";
-
 import "./header.scss";
 
 import ContentWrapper from "./contentWrapper/ContentWrapper";
 import hotStarLogo from "../assets/images/logo.png";
+
+import User from "../pages/profilePage/User";
 
 const Header = () => {
   const [show, setShow] = useState("top");
@@ -68,23 +69,13 @@ const Header = () => {
   const navigationHandler = (type) => {
     if (type === "movie") {
       navigate("/explore/movie");
-    } else {
+    } else if(type==="tv") {
       navigate("/explore/tv");
+    }else if(type==="profile"){
+      navigate("/user/profile")
     }
     setMobileMenu(false);
   };
-
-  const logout = () => {
-    try {
-      // console.log('logging out....');
-      dispatch(getUser(null));
-      toast.success("Successfully logged out!");
-    } catch (error) {
-      console.error(error);
-      toast.error("Something goes very wrong");
-    }
-  };
-
   
   return (
     <header className={`header ${mobileMenu ? "mobileView" : ""} ${show}`}>
@@ -127,14 +118,11 @@ const Header = () => {
             >
               <HiOutlineSearch onClick={openSearch} />
             </li>
-
             <li
               className="menuItem hover:scale-110 transition-all duration-300
             ease-in-out"
             >
-              <Link to={"/login"} onClick={logout}>
-                Logout
-              </Link>
+              <CgProfile onClick={() => navigationHandler("profile")} />
             </li>
           </ul>
         ) : (
