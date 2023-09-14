@@ -37,7 +37,6 @@ const Fuser = ({ userData }) => {
 
   const logout = () => {
     try {
-      // console.log('logging out....');
       dispatch(getUser(null));
       toast.success("Successfully logged out!");
     } catch (error) {

@@ -41,7 +41,8 @@ const Signup = () => {
     let bodyContent = JSON.stringify({
         "name": name,
         "email": email,
-        "password": password
+        "password": password,
+        appType : "ott"
     });
 
     let reqOptions = {
